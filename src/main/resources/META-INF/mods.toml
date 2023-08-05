@@ -1,0 +1,108 @@
+modLoader="javafml"
+loaderVersion="[36,)"
+issueTrackerURL=""
+license="MIT"
+
+[[mods]]
+modId="equipabletfc"
+version="${file.jarVersion}"
+displayName="Equipable Twilight Forest Charms (TFC)"
+authors="Meme Man"
+description='''A small patch addon which allows for Twilight Forest charms to be equipped in the Curios Charm Slot.'''
+logoFile="etfc_logo.png"
+
+# Base
+[[dependencies.equipabletfc]]
+	modId="forge"
+	mandatory=true
+	versionRange="[36.2.20,)"
+	ordering="NONE"
+	side="BOTH"
+
+[[dependencies.equipabletfc]]
+	modId="minecraft"
+	mandatory=true
+	versionRange="[1.16.5,1.17]"
+	ordering="NONE"
+	side="BOTH"
+
+# Libraries
+[[dependencies.equipabletfc]]
+	modId="curios"
+	mandatory=true
+	versionRange="[1.16.5-4.1.0.0,)"
+	ordering="NONE"
+	side="BOTH"
+
+[[dependencies.equipabletfc]]
+	modId="twilightforest"
+	mandatory=true
+	versionRange="[4.0.870,)"
+	ordering="NONE"
+	side="BOTH"
+
+# Extras
+	# COMMON
+[[dependencies.equipabletfc]]
+	modId="jei"
+	mandatory=false
+	versionRange="[7.7.1.152,]"
+	ordering="AFTER"
+	side="BOTH"
+
+[[dependencies.equipabletfc]]
+	modId="jeresources"
+	mandatory=false
+	versionRange="[0.12,]"
+	ordering="AFTER"
+	side="BOTH"
+	
+[[dependencies.equipabletfc]]
+	modId="jeed"
+	mandatory=false
+	versionRange="[1.16.5-1.6,]"
+	ordering="AFTER"
+	side="BOTH"
+	
+[[dependencies.equipabletfc]]
+	modId="theoneprobe"
+	mandatory=false
+	versionRange="[1.16-3.1.7,]"
+	ordering="AFTER"
+	side="BOTH"
+
+[[dependencies.equipabletfc]]
+	modId="datafixerslayer"
+	mandatory=false
+	versionRange="[1.0-3,]"
+	ordering="AFTER"
+	side="BOTH"
+	
+	# CLIENT
+[[dependencies.equipabletfc]]
+	modId="appleskin"
+	mandatory=false
+	versionRange="[mc1.16.5-2.4.0,]"
+	ordering="AFTER"
+	side="CLIENT"
+
+[[dependencies.equipabletfc]]
+	modId="configured"
+	mandatory=false
+	versionRange="[1.5.3,]"
+	ordering="AFTER"
+	side="CLIENT"
+
+[[dependencies.equipabletfc]]
+	modId="catalogue"
+	mandatory=false
+	versionRange="[1.6.1,]"
+	ordering="AFTER"
+	side="CLIENT"
+
+[[dependencies.equipabletfc]]
+	modId="gamemenumodoption"
+	mandatory=false
+	versionRange="[1.8.2,]"
+	ordering="AFTER"
+	side="CLIENT"

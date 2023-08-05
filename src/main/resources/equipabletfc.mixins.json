@@ -1,0 +1,15 @@
+{
+	"required": true,
+	"package": "com.mememan.equipabletfc.mixins",
+	"compatibilityLevel": "JAVA_8",
+	"mixins": [
+	],
+	"client": [
+	],
+	"server": [
+	],
+	"refmap": "equipabletfc.refmap.json",
+	"injectors": {
+		"defaultRequire": 1
+	}
+}

@@ -1,0 +1,178 @@
+buildscript {
+	repositories {
+		maven { url = "https://maven.minecraftforge.net/" }
+		maven { url = "https://maven.parchmentmc.org" }
+		maven { url = "https://repo.spongepowered.org/maven" }
+		mavenCentral()
+	}
+	dependencies {
+		classpath(group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '5.1.+', changing: true)
+		classpath 'org.parchmentmc:librarian:1.+'
+		classpath group: 'org.spongepowered', name: 'mixingradle', version: '0.7-SNAPSHOT'
+	}
+}
+
+apply plugin: "net.minecraftforge.gradle"
+apply plugin: 'org.parchmentmc.librarian.forgegradle'
+apply plugin: "org.spongepowered.mixin"
+apply plugin: "eclipse"
+apply plugin: "maven-publish"
+
+version = project.mod_version
+group = project.group
+archivesBaseName = project.modid
+
+java.toolchain.languageVersion = JavaLanguageVersion.of(8)
+
+println('Java: ' + System.getProperty('java.version') + ' JVM: ' + System.getProperty('java.vm.version') + '(' + System.getProperty('java.vendor') + ') Arch: ' + System.getProperty('os.arch'))
+minecraft {
+    mappings channel: project.mappings_channel, version: project.mappings_version
+    
+    accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
+
+    runs {
+        client {
+            workingDirectory project.file('run')
+
+		    arg "-mixin.config=${modid}.mixins.json"	    
+			property 'mixin.env.remapRefMap', 'true'
+			property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
+			
+			property 'forge.logging.markers', 'SCAN'
+			property 'forge.logging.console.level', 'debug'
+
+            mods {
+                "${modid}" {
+                    source sourceSets.main
+                }
+            }
+        }
+
+        server {
+            workingDirectory project.file('run')
+
+		    arg "-mixin.config=${modid}.mixins.json"
+			property 'mixin.env.remapRefMap', 'true'
+			property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
+			
+			property 'forge.logging.markers', 'SCAN'
+			property 'forge.logging.console.level', 'debug'
+
+            mods {
+                "${modid}" {
+                    source sourceSets.main
+                }
+            }
+        }
+
+        data {
+            workingDirectory project.file('run')
+
+		    arg "-mixin.config=${modid}.mixins.json"
+			property 'mixin.env.remapRefMap', 'true'
+			property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
+			
+			property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
+			property 'forge.logging.console.level', 'debug'
+
+            args '--mod', "${modid}", '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
+
+            mods {
+                "${modid}" {
+                    source sourceSets.main
+                }
+            }
+        }
+    }
+}
+
+sourceSets.main.resources { srcDir 'src/generated/resources' }
+
+mixin {
+	add sourceSets.main, "${modid}.refmap.json"
+	config "${modid}.mixins.json"
+
+	debug.export = true
+}
+
+repositories {
+	maven {
+		name = "CurseForge Maven"
+		url = "https://www.cursemaven.com"
+	}
+	maven {
+		name = "Progwml6 Maven"
+		url = "https://dvs1.progwml6.com/files/maven/"
+	}
+	maven {
+		name = "IllusiveC4 Maven (TOP)"
+		url "https://maven.theillusivec4.top/"
+	}
+}
+
+dependencies {
+	// Base
+	minecraft("net.minecraftforge:forge:${mc_version}-${forge_version}")
+	annotationProcessor("org.spongepowered:mixin:0.8.5:processor")
+
+    // Libraries
+    runtimeOnly fg.deobf("top.theillusivec4.curios:curios-forge:${curios_version}")
+    compileOnly fg.deobf("top.theillusivec4.curios:curios-forge:${curios_version}:api")
+
+	implementation fg.deobf("curse.maven:the-twilight-forest-227639:${twilight_forest_version}")
+
+    // Extras
+	implementation fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}:api")
+	implementation fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}")
+	implementation fg.deobf("curse.maven:just-enough-resources-jer-240630:${jer_version}")
+	implementation fg.deobf("curse.maven:just-enough-effect-descriptions-jeed-532286:${jeed_version}")
+
+	implementation fg.deobf("curse.maven:appleskin-248787:${appleskin_version}")
+	
+	implementation fg.deobf("curse.maven:the-one-probe-245211:${top_version}")
+
+	implementation fg.deobf("curse.maven:configured-457570:${configured_version}")
+	implementation fg.deobf("curse.maven:catalogue-459701:${catalogue_version}")
+	
+	implementation fg.deobf("curse.maven:gamemenumodoption-353051:${gmmo_version}")
+
+	implementation fg.deobf("curse.maven:datafixerslayer-416519:${dfs_version}")
+	
+	implementation fg.deobf("curse.maven:bountifulbaubles-313536:${bb_version}")
+}
+
+jar {
+    manifest {
+        attributes([
+            "Specification-Title": project.mod_name,
+            "Specification-Vendor": "Meme Man",
+            "Specification-Version": project.mod_version,
+            "Implementation-Title": project.mod_name,
+            "Implementation-Version": project.mod_version,
+            "Implementation-Vendor" :"Meme Man",
+            "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
+	    	"MixinConfigs": "${modid}.mixins.json"
+        ])
+    }
+}
+
+jar.finalizedBy('reobfJar')
+
+processResources {
+	exclude '**/.cache/'
+
+	duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            artifact jar
+        }
+    }
+    repositories {
+        maven {
+            url "file:///${project.projectDir}/mcmodsrepo"
+        }
+    }
+}
