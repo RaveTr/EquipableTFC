@@ -26,7 +26,7 @@ public class EquipableTFCCommonMiscEvents {
 	}
 	
 	@SubscribeEvent
-	public static void onLivingDeath(LivingDeathEvent event) {
+	public static void onLivingDeathEvent(LivingDeathEvent event) {
 		LivingEntity targetDeadEntity = event.getEntityLiving();
 		
 		if (targetDeadEntity != null && targetDeadEntity instanceof PlayerEntity) {

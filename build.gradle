@@ -106,7 +106,7 @@ repositories {
 	}
 	maven {
 		name = "IllusiveC4 Maven (TOP)"
-		url "https://maven.theillusivec4.top/"
+		url = "https://maven.theillusivec4.top/"
 	}
 }
 
