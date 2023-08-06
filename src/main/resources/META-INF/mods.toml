@@ -1,6 +1,6 @@
 modLoader="javafml"
 loaderVersion="[36,)"
-issueTrackerURL=""
+issueTrackerURL="https://github.com/RaveTr/EquipableTFC/issues"
 license="MIT"
 
 [[mods]]
