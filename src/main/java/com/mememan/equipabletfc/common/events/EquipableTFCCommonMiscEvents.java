@@ -1,5 +1,6 @@
 package com.mememan.equipabletfc.common.events;
 
+import com.mememan.equipabletfc.manager.EquipableTFCConfigManager;
 import com.mememan.equipabletfc.util.CompatUtil;
 
 import net.minecraft.entity.LivingEntity;
@@ -21,7 +22,7 @@ public class EquipableTFCCommonMiscEvents {
 		LivingEntity owner = targetSlot.getWearer();
 		
 		if (targetStack != null && owner != null) {
-			if (owner.isAlive() && !targetStack.isEmpty() && targetSlot.getIdentifier().equalsIgnoreCase("charm") && targetStack.getItem() instanceof CuriosCharmItem && event.hasResult()) event.setResult(Result.ALLOW);
+			if (owner.isAlive() && !targetStack.isEmpty() && targetSlot.getIdentifier().equalsIgnoreCase(EquipableTFCConfigManager.MAIN_COMMON.validSlotIdentifier.get()) && targetStack.getItem() instanceof CuriosCharmItem && event.hasResult()) event.setResult(Result.ALLOW);
 		}
 	}
 	

@@ -2,7 +2,6 @@ package com.mememan.equipabletfc.util;
 
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.EffectInstance;
@@ -19,6 +18,10 @@ import twilightforest.item.TFItems;
 import twilightforest.util.TFItemStackUtils;
 
 public class CompatUtil { //TODO if-else hell impl (too lazy to do a map-based function impl) :dies:
+	
+	private CompatUtil() {
+		throw new IllegalAccessError("Attempted to instantiate a Utility Class!");
+	}
 
 	/**
 	 * Refactored impl of {@link TFEventListener#charmOfLife(PlayerEntity)} which considers Curios slots.
@@ -72,20 +75,5 @@ public class CompatUtil { //TODO if-else hell impl (too lazy to do a map-based f
 		}
 
 		return TFItemStackUtils.consumeInventoryItem(curioStacks, targetItem);
-	}
-
-	//TODO Method copies from TFItemStackUtils
-	private static void keepAllArmor(PlayerEntity player, PlayerInventory keepInventory) {
-		for (int i = 0; i < player.inventory.armor.size(); i++) {
-			keepInventory.armor.set(i, ((ItemStack) player.inventory.armor.get(i)).copy());
-			player.inventory.armor.set(i, ItemStack.EMPTY);
-		} 
-	}
-
-	private static void keepOffHand(PlayerEntity player, PlayerInventory keepInventory) {
-		for (int i = 0; i < player.inventory.offhand.size(); i++) {
-			keepInventory.offhand.set(i, ((ItemStack) player.inventory.offhand.get(i)).copy());
-			player.inventory.offhand.set(i, ItemStack.EMPTY);
-		} 
 	}
 }
