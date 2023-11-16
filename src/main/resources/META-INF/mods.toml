@@ -1,25 +1,25 @@
 modLoader="javafml"
 loaderVersion="[36,)"
-issueTrackerURL="https://github.com/RaveTr/EquipableTFC/issues"
+issueTrackerURL=""
 license="MIT"
 
 [[mods]]
-modId="equipabletfc"
+modId="twilightforesttweaks"
 version="${file.jarVersion}"
-displayName="Equipable Twilight Forest Charms (TFC)"
+displayName="Twilight Forest Tweaks (TFT)"
 authors="Meme Man"
-description='''A small patch addon which allows for Twilight Forest charms to be equipped in the Curios Charm Slot.'''
-logoFile="etfc_logo.png"
+description='''A small patch addon to Twilight Forest which adds compatibility with Curios API and introduces a number of niche features.'''
+logoFile="tft_logo.png"
 
 # Base
-[[dependencies.equipabletfc]]
+[[dependencies.twilightforesttweaks]]
 	modId="forge"
 	mandatory=true
 	versionRange="[36.2.20,)"
 	ordering="NONE"
 	side="BOTH"
 
-[[dependencies.equipabletfc]]
+[[dependencies.twilightforesttweaks]]
 	modId="minecraft"
 	mandatory=true
 	versionRange="[1.16.5,1.17]"
@@ -27,14 +27,7 @@ logoFile="etfc_logo.png"
 	side="BOTH"
 
 # Libraries
-[[dependencies.equipabletfc]]
-	modId="curios"
-	mandatory=true
-	versionRange="[1.16.5-4.1.0.0,)"
-	ordering="NONE"
-	side="BOTH"
-
-[[dependencies.equipabletfc]]
+[[dependencies.twilightforesttweaks]]
 	modId="twilightforest"
 	mandatory=true
 	versionRange="[4.0.870,)"
@@ -43,35 +36,42 @@ logoFile="etfc_logo.png"
 
 # Extras
 	# COMMON
-[[dependencies.equipabletfc]]
+[[dependencies.twilightforesttweaks]]
+	modId="curios"
+	mandatory=false
+	versionRange="[1.16.5-4.1.0.0,)"
+	ordering="NONE"
+	side="BOTH"
+
+[[dependencies.twilightforesttweaks]]
 	modId="jei"
 	mandatory=false
 	versionRange="[7.7.1.152,]"
 	ordering="AFTER"
 	side="BOTH"
 
-[[dependencies.equipabletfc]]
+[[dependencies.twilightforesttweaks]]
 	modId="jeresources"
 	mandatory=false
 	versionRange="[0.12,]"
 	ordering="AFTER"
 	side="BOTH"
 	
-[[dependencies.equipabletfc]]
+[[dependencies.twilightforesttweaks]]
 	modId="jeed"
 	mandatory=false
 	versionRange="[1.16.5-1.6,]"
 	ordering="AFTER"
 	side="BOTH"
 	
-[[dependencies.equipabletfc]]
+[[dependencies.twilightforesttweaks]]
 	modId="theoneprobe"
 	mandatory=false
 	versionRange="[1.16-3.1.7,]"
 	ordering="AFTER"
 	side="BOTH"
 
-[[dependencies.equipabletfc]]
+[[dependencies.twilightforesttweaks]]
 	modId="datafixerslayer"
 	mandatory=false
 	versionRange="[1.0-3,]"
@@ -79,28 +79,28 @@ logoFile="etfc_logo.png"
 	side="BOTH"
 	
 	# CLIENT
-[[dependencies.equipabletfc]]
+[[dependencies.twilightforesttweaks]]
 	modId="appleskin"
 	mandatory=false
 	versionRange="[mc1.16.5-2.4.0,]"
 	ordering="AFTER"
 	side="CLIENT"
 
-[[dependencies.equipabletfc]]
+[[dependencies.twilightforesttweaks]]
 	modId="configured"
 	mandatory=false
 	versionRange="[1.5.3,]"
 	ordering="AFTER"
 	side="CLIENT"
 
-[[dependencies.equipabletfc]]
+[[dependencies.twilightforesttweaks]]
 	modId="catalogue"
 	mandatory=false
 	versionRange="[1.6.1,]"
 	ordering="AFTER"
 	side="CLIENT"
 
-[[dependencies.equipabletfc]]
+[[dependencies.twilightforesttweaks]]
 	modId="gamemenumodoption"
 	mandatory=false
 	versionRange="[1.8.2,]"
